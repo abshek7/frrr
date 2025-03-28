@@ -2,7 +2,7 @@ export function cn(...classes: (string | false | undefined | null)[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
-export const float32ToPcm16 = (float32Array: string | any[]) => {
+export const float32ToPcm16 = (float32Array: Float32Array): Int16Array => {
   const pcm16 = new Int16Array(float32Array.length);
   for (let i = 0; i < float32Array.length; i++) {
     const s = Math.max(-1, Math.min(1, float32Array[i]));
@@ -11,8 +11,8 @@ export const float32ToPcm16 = (float32Array: string | any[]) => {
   return pcm16;
 };
 
-// Utility function to convert base64 to Float32Array
-export const base64ToFloat32Array = (base64: string) => {
+// Convert base64 to Float32Array
+export const base64ToFloat32Array = (base64: string): Float32Array => {
   const binary = atob(base64);
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i++) {
